@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<hr>
+	<hr>
+	<script>
+	/*
+		三种基本数据类型 boolean number string 值传递 指向两个变量 一个的改变不引起另一个的变化
+		两种引用类型 Array object 指针传递 指针（地址）保存在栈中 指向堆中的内存 普通赋值方法会引起联动变化  object对象需采用遍历属性 Array对象使用slice方法
+		slice()方法基于当前数组中的一个或多个项创建一个新数组，传递一个参数代表返回从该参数指定位置开始到当前数组末尾所有项
+	*/
+	var clone={
+		testClone:function(origin)
+		{
+			if(typeof(origin)=='object')
+			{
+				if(origin instanceof Array)
+				{   var test=new Array;
+					test=origin.slice(0);
+				}else{
+					var test=new Object();
+					//test=origin;
+					for(var i in origin)
+					{
+						test[i]=origin[i];
+					}
+				}
+			}else{
+				if(typeof(origin)=="number" ||typeof(origin)=="string"||typeof(origin)=="boolean")
+				{
+					var test;
+					test=origin;	
+				}
+			}
+			return test;
+		},
+
+		testArray:function(origin,testNumber){
+			testNumber.push('sina');
+			console.log('原始数组为: '+origin);
+			console.log('复制后添加的数组为: '+testNumber);
+		},
+		testObject:function(origin,testNumber){
+			testNumber.name='sina';
+			console.log('原对象为: '+origin.name);
+			console.log('复制后对象为: '+testNumber.name);
+		}
+	}
+	//var a=[1,2,3]
+
+	//var b=clone.testClone(a)
+
+	//console.log(b)
+
+	//clone.testArray(a,b)
+	
+
+	//var c={name:'liming',sex:'male'};var b=clone.testClone(c);
+	//clone.testObject(c,b);
+	</script>
+</body>
+</html>
